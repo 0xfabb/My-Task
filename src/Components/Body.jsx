@@ -8,13 +8,13 @@ const Body = () => {
     const savetoLS = () => {
       localStorage.setItem("todos", JSON.stringify("todos"))
     }
-    // useEffect(()=>{
-    //   let todostring = localStorage.getItem(todos)
-    //   if(todostring){
-    //     let todos = JSON.parse(localStorage.getItem("todos"))
-    //     setTodo(todos)
-    //   }
-    // },[])
+    useEffect(()=>{
+      let todostring = localStorage.getItem(todos)
+      if(todostring){
+        let todos = JSON.parse(localStorage.getItem("todos"))
+        setTodo(todos)
+      }
+    },[])
     const handleEdit = (e,id) => {
       let t = todos.filter(i=>i.id === id)
       setTodo(t[0].todo)
