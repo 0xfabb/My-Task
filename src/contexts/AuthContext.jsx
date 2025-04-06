@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_BASE}/me`, {
+        const res = await fetch(`${import.meta.env.VITE_API_BASE}/api/auth/me`, {
           method: "GET",
           credentials: "include", // Send cookie
         });

@@ -34,9 +34,9 @@ const Login = () => {
 
         if (meRes.ok) {
           const user = await meRes.json();
-          login(); // update auth context
+          login(); 
           alert(`Welcome back, ${user.email}!`);
-          navigate("/todo"); // or wherever you want to send them
+          navigate("/todo"); 
         } else {
           alert("Login success, but could not fetch user info.");
         }
