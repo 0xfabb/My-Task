@@ -9,10 +9,14 @@ const TodoPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (isLoggedIn === false) {
       navigate("/login");
     }
   }, [isLoggedIn]);
+
+  if (isLoggedIn === null) {
+    return <p>Loading...</p>; // or a spinner
+  }
 
   return (
     <div>
