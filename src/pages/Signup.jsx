@@ -35,7 +35,7 @@ const SignUp = () => {
           const user = await meRes.json();
           login(); // update context
           alert(`Welcome ${user.email}!`);
-          navigate("/todo");
+          navigate("/");
         } else {
           alert("Could not verify user.");
         }

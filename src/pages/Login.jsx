@@ -36,7 +36,7 @@ const Login = () => {
           const user = await meRes.json();
           login(); 
           alert(`Welcome back, ${user.email}!`);
-          navigate("/todo"); 
+          navigate("/"); 
         } else {
           alert("Login success, but could not fetch user info.");
         }
