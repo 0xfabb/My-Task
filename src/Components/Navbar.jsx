@@ -1,11 +1,36 @@
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+
 const Navbar = () => {
+  const { isLoggedIn, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
+
   return (
-    <nav className="bg-slate-900 px-4 py-3 flex flex-col sm:flex-row justify-between items-center shadow-md">
-      <h2 className="text-white text-2xl font-bold">MyTask</h2>
-      <ul className="flex gap-6 mt-2 sm:mt-0">
-        <li className="text-white text-lg font-medium cursor-pointer hover:font-bold transition-all">Home</li>
-        <li className="text-white text-lg font-medium cursor-pointer hover:font-bold transition-all">Your To Dos</li>
-      </ul>
+    <nav className="bg-dark3 text-white p-4 flex justify-between items-center shadow-md">
+      <Link to="/" className="text-xl font-bold">ToDo App</Link>
+      <div className="space-x-4">
+        {isLoggedIn ? (
+          <>
+            <Link to="/todos" className="hover:underline">My Todos</Link>
+            <button
+              onClick={handleLogout}
+              className="bg-accent hover:bg-accent2 px-4 py-2 rounded-md transition-all"
+            >
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <Link to="/login" className="hover:underline">Login</Link>
+            <Link to="/signup" className="hover:underline">Sign Up</Link>
+          </>
+        )}
+      </div>
     </nav>
   );
 };
