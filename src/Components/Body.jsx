@@ -8,11 +8,14 @@ const Body = () => {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    fetch(`${API_BASE}/api/tasks`)
+    fetch(`${API_BASE}/api/tasks`, {
+      credentials: "include", 
+    })
       .then((res) => res.json())
       .then((data) => setTodos(data))
       .catch((err) => console.error("Error fetching tasks:", err));
   }, []);
+  
 
   const handleAdd = async () => {
     if (!todo.trim()) return;
