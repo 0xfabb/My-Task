@@ -8,7 +8,7 @@ const Body = () => {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    fetch(`${API_BASE}/tasks`)
+    fetch(`${API_BASE}/api/tasks`)
       .then((res) => res.json())
       .then((data) => setTodos(data))
       .catch((err) => console.error("Error fetching tasks:", err));
@@ -17,7 +17,7 @@ const Body = () => {
   const handleAdd = async () => {
     if (!todo.trim()) return;
     const newTask = { id: uuidv4(), todo, isCompleted: false };
-    await fetch(`${API_BASE}/addtask`, {
+    await fetch(`${API_BASE}/api/addtask`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newTask),
@@ -27,7 +27,7 @@ const Body = () => {
   };
 
   const handleDelete = async (id) => {
-    await fetch(`${API_BASE}/deletetask/${id}`, { method: "DELETE" });
+    await fetch(`${API_BASE}/api/deletetask/${id}`, { method: "DELETE" });
     setTodos(todos.filter((item) => item.id !== id));
   };
 
@@ -43,7 +43,7 @@ const Body = () => {
     );
     setTodos(updatedTodos);
     const toggled = updatedTodos.find((t) => t.id === id);
-    await fetch(`${API_BASE}/toggle/${id}`, {
+    await fetch(`${API_BASE}/api/toggle/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ isCompleted: toggled.isCompleted }),
