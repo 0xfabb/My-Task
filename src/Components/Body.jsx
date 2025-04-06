@@ -19,7 +19,8 @@ const Body = () => {
     const newTask = { id: uuidv4(), todo, isCompleted: false };
     await fetch(`${API_BASE}/api/addtask`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      headers: { "Content-Type": "application/json"  },
       body: JSON.stringify(newTask),
     });
     setTodos([...todos, newTask]);
@@ -27,7 +28,7 @@ const Body = () => {
   };
 
   const handleDelete = async (id) => {
-    await fetch(`${API_BASE}/api/deletetask/${id}`, { method: "DELETE" });
+    await fetch(`${API_BASE}/api/deletetask/${id}`, { method: "DELETE",  credentials: "include", });
     setTodos(todos.filter((item) => item.id !== id));
   };
 
@@ -45,6 +46,7 @@ const Body = () => {
     const toggled = updatedTodos.find((t) => t.id === id);
     await fetch(`${API_BASE}/api/toggle/${id}`, {
       method: "PUT",
+      credentials: "include",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ isCompleted: toggled.isCompleted }),
     });
